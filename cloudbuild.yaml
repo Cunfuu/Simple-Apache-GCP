@@ -1,0 +1,12 @@
+
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/auto-421318/welcome-app:latest', '.']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['deploy', 'run-platform', 'v1', '--platform', 'managed',
+          '--region', 'europe-west10-b',
+          '--image', 'gcr.io/auto-421318/welcome-app:latest',
+          '--name', 'welcome-app']
+ notifications:
+   email:
+     - cunfuu@gmail.com
